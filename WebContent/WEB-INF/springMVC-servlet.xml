@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<!-- 启动springMVC注解 -->
+	<mvc:annotation-driven/>
+	<!-- 扫描注解所在的包 -->
+	<context:component-scan base-package="com">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+		<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.RequestMapping"/>
+	</context:component-scan>
+	<!-- 视图解析器 -->
+	 <mvc:annotation-driven/>
+    <mvc:resources mapping="/images/**" location="/images/"/>
+    <mvc:resources mapping="/lib/**" location="/lib/"/>
+    <mvc:resources mapping="/static/**" location="/static/"/>
+    <mvc:resources mapping="/temp/**" location="/temp/"/>
+    
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="jspViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/"></property> 
+		<property name="suffix" value=".jsp"></property> 
+	</bean>
+	<!-- 排除静态资源 -->
+	<mvc:default-servlet-handler/>
+	<!-- 文件上传id必须为"multipartResolver" -->
+	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+		<property name="maxUploadSize" value="20971520"></property>
+		<property name="defaultEncoding" value="UTF-8"></property>
+	</bean>
+	<!-- 配置拦截器 -->
+	<!-- <mvc:interceptors>
+		<mvc:interceptor>
+			拦截路径
+			<mvc:mapping path="/back/login"/>
+			排除路径
+			<mvc:exclude-mapping path="/back/login"/>
+			<mvc:exclude-mapping path="/back/loginDo"/>
+			定义拦截器
+			<bean class="com.shxt.interceptor.SessionInterceptor" id="sessionInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors> -->
+</beans>

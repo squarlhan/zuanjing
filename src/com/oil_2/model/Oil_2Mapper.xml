@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.oil_2.mapper.Oil_2Mapper" >
+    <resultMap id="BaseResultMap" type="com.oil_2.model.Oil_2" >
+        <result column="DateTime" property="dateTime" jdbcType="VARCHAR" />
+        <result column="Time" property="time" jdbcType="INTEGER" />
+        <result column="WellDep" property="wellDep" jdbcType="DOUBLE" />
+        <result column="HangDownDeep" property="hangDownDeep" jdbcType="DOUBLE" />
+        <result column="DepthOfTheDrillBit" property="depthOfTheDrillBit" jdbcType="DOUBLE" />
+        <result column="DrillDownDeep" property="drillDownDeep" jdbcType="DOUBLE" />
+        <result column="DrillingTime" property="drillingTime" jdbcType="DOUBLE" />
+        <result column="BitPressure" property="bitPressure" jdbcType="DOUBLE" />
+        <result column="HangingLoad" property="hangingLoad" jdbcType="DOUBLE" />
+        <result column="RotationRate" property="rotationRate" jdbcType="DOUBLE" />
+        <result column="Torque" property="torque" jdbcType="DOUBLE" />
+        <result column="KellyDown" property="kellyDown" jdbcType="DOUBLE" />
+        <result column="HookPosition" property="hookPosition" jdbcType="DOUBLE" />
+        <result column="HookSpeed" property="hookSpeed" jdbcType="DOUBLE" />
+        <result column="StandpipePressurelog" property="standpipePressurelog" jdbcType="DOUBLE" />
+        <result column="CasingPressure" property="casingPressure" jdbcType="DOUBLE" />
+        <result column="PumpStroke1" property="pumpStroke1" jdbcType="DOUBLE" />
+        <result column="PumpStroke2" property="pumpStroke2" jdbcType="DOUBLE" />
+        <result column="PumpStroke3" property="pumpStroke3" jdbcType="DOUBLE" />
+        <result column="TotalPoolSize" property="totalPoolSize" jdbcType="DOUBLE" />
+        <result column="LayTime" property="layTime" jdbcType="DOUBLE" />
+        <result column="MudSpill" property="mudSpill" jdbcType="DOUBLE" />
+        <result column="InletFlowlog" property="inletFlowlog" jdbcType="DOUBLE" />
+        <result column="OutletFlowlog" property="outletFlowlog" jdbcType="DOUBLE" />
+        <result column="InletDensitylog" property="inletDensitylog" jdbcType="DOUBLE" />
+        <result column="OutletDensitylog" property="outletDensitylog" jdbcType="DOUBLE" />
+        <result column="EntranceTempreture" property="entranceTempreture" jdbcType="DOUBLE" />
+        <result column="ExitTempreture" property="exitTempreture" jdbcType="DOUBLE" />
+        <result column="TotalHydrocarbon" property="totalHydrocarbon" jdbcType="DOUBLE" />
+        <result column="H2S" property="h2S" jdbcType="DOUBLE" />
+        <result column="C1" property="c1" jdbcType="DOUBLE" />
+        <result column="C2" property="c2" jdbcType="DOUBLE" />
+        <result column="PWDDepth" property="PWDDepth" jdbcType="DOUBLE" />
+        <result column="PWDHangDownDeep" property="PWDHangDownDeep" jdbcType="DOUBLE" />
+        <result column="PWD_zzyl" property="PWD_zzyl" jdbcType="DOUBLE" />
+        <result column="PWD_hkyl" property="PWD_hkyl" jdbcType="DOUBLE" />
+        <result column="PWD_hkwd" property="PWD_hkwd" jdbcType="DOUBLE" />
+        <result column="PWD_cl_ECD" property="PWD_cl_ECD" jdbcType="DOUBLE" />
+        <result column="PWDWellDeviation" property="PWDWellDeviation" jdbcType="DOUBLE" />
+        <result column="PWDLocation" property="PWDLocation" jdbcType="DOUBLE" />
+        <result column="qztj" property="qztj" jdbcType="DOUBLE" />
+        <result column="UpturnDepth" property="upturnDepth" jdbcType="DOUBLE" />
+        <result column="OperatorSchema" property="operatorSchema" jdbcType="DOUBLE" />
+        <result column="StandpipePressure" property="standpipePressure" jdbcType="DOUBLE" />
+        <result column="MeasurementOfBackPressure" property="measurementOfBackPressure" jdbcType="DOUBLE" />
+        <result column="OutletFlow" property="outletFlow" jdbcType="DOUBLE" />
+        <result column="OutletDensity" property="outletDensity" jdbcType="DOUBLE" />
+        <result column="BackPressurePumpFlow" property="backPressurePumpFlow" jdbcType="DOUBLE" />
+        <result column="LoopBackPressure" property="loopBackPressure" jdbcType="DOUBLE" />
+        <result column="AdditionalBackPressure" property="additionalBackPressure" jdbcType="DOUBLE" />
+        <result column="InletFlow" property="inletFlow" jdbcType="DOUBLE" />
+        <result column="FixDepth" property="fixDepth" jdbcType="DOUBLE" />
+        <result column="FixPointDownDeep" property="fixPointDownDeep" jdbcType="DOUBLE" />
+        <result column="FixPointPressure" property="fixPointPressure" jdbcType="DOUBLE" />
+        <result column="WellMouthAdjustment" property="wellMouthAdjustment" jdbcType="DOUBLE" />
+        <result column="FixPointPressureLoss" property="fixPointPressureLoss" jdbcType="DOUBLE" />
+        <result column="BoDongYL" property="boDongYL" jdbcType="DOUBLE" />
+        <result column="YaHaoXZ" property="yaHaoXZ" jdbcType="DOUBLE" />
+        <result column="QiXiaZuanSD" property="qiXiaZuanSD" jdbcType="DOUBLE" />
+        <result column="QiXiaZuanJSD" property="qiXiaZuanJSD" jdbcType="DOUBLE" />
+        <result column="FixPointECD" property="fixPointECD" jdbcType="DOUBLE" />
+        <result column="DrillECD" property="drillECD" jdbcType="DOUBLE" />
+        <result column="DrillStringPressureDrop" property="drillStringPressureDrop" jdbcType="DOUBLE" />
+        <result column="DrillBitPressureDrop" property="drillBitPressureDrop" jdbcType="DOUBLE" />
+        <result column="EnvironmentalControlPressureLoss" property="environmentalControlPressureLoss" jdbcType="DOUBLE" />
+        <result column="TargetBackPressure" property="targetBackPressure" jdbcType="DOUBLE" />
+        <result column="HydrostaticPressure" property="hydrostaticPressure" jdbcType="DOUBLE" />
+        <result column="State_1" property="state_1" jdbcType="DOUBLE" />
+        <result column="State_2" property="state_2" jdbcType="DOUBLE" />
+    </resultMap>
+
+	<sql id="oil_2_colums">
+		DateTime,Time,WellDep,HangDownDeep,DepthOfTheDrillBit,DrillDownDeep,DrillingTime,BitPressure,HangingLoad,RotationRate,Torque,KellyDown,HookPosition,HookSpeed,StandpipePressurelog,CasingPressure,PumpStroke1,PumpStroke2,PumpStroke3,TotalPoolSize,LayTime,MudSpill,InletFlowlog,OutletFlowlog,InletDensitylog,OutletDensitylog,EntranceTempreture,ExitTempreture,TotalHydrocarbon,H2S,C1,C2,PWDDepth,PWDHangDownDeep,PWD_zzyl,PWD_hkyl,PWD_hkwd,PWD_cl_ECD,PWDWellDeviation,PWDLocation,qztj,UpturnDepth,OperatorSchema,StandpipePressure,MeasurementOfBackPressure,OutletFlow,OutletDensity,BackPressurePumpFlow,LoopBackPressure,AdditionalBackPressure,InletFlow,FixDepth,FixPointDownDeep,FixPointPressure,WellMouthAdjustment,FixPointPressureLoss,BoDongYL,YaHaoXZ,QiXiaZuanSD,QiXiaZuanJSD,FixPointECD,DrillECD,DrillStringPressureDrop,DrillBitPressureDrop,EnvironmentalControlPressureLoss,TargetBackPressure,HydrostaticPressure,State_1,State_2
+	</sql>
+    
+    <select id="load" resultMap="BaseResultMap" parameterType="java.lang.Double" >
+        select  *
+        from oil_2
+        where Time = #{time,jdbcType=DOUBLE}
+    </select>
+    
+    <select id="load2" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select  *
+        from oil_2
+        where Time = #{time,jdbcType=INTEGER}
+    </select>
+    
+    <delete id="delete" parameterType="java.lang.Double" >
+        delete from oil_2
+        where Time = #{time,jdbcType=DOUBLE}r
+    </delete>
+    
+    <select id="oil_2List" resultMap="BaseResultMap" parameterType="map" >
+    	select * from oil_2
+       	   <where>
+    		<if test="oil_2.time !=null and oil_2.time !=''">
+    		 Time = #{oil_2.time}
+    		</if>
+    	</where>
+    	limit #{beg},#{num}  
+    </select>
+    
+    <select id="oil_2Table" parameterType="java.lang.Double" resultMap="BaseResultMap">
+    	select * from oil_2
+		where Time = #{time,jdbcType=DOUBLE}
+    </select>
+    
+    <select id="count" parameterType="map" resultType="integer">
+    	select count(*) from oil_2
+   		<where>
+    		<if test="oil_2.time !=null and oil_2.time !=''">
+    		 Time = #{oil_2.time}
+    		</if>
+    	</where>
+    	limit #{beg},#{num}
+    </select>
+    
+    <insert id="add" parameterType="com.oil_2.model.Oil_2" >
+
+        insert into oil_2
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="dateTime != null" >
+                DateTime,
+            </if>
+            <if test="time != null" >
+                Time,
+            </if>
+            <if test="wellDep != null" >
+                WellDep,
+            </if>
+            <if test="hangDownDeep != null" >
+                HangDownDeep,
+            </if>
+            <if test="depthOfTheDrillBit != null" >
+                DepthOfTheDrillBit,
+            </if>
+            <if test="drillDownDeep != null" >
+                DrillDownDeep,
+            </if>
+            <if test="drillingTime != null" >
+                DrillingTime,
+            </if>
+            <if test="bitPressure != null" >
+                BitPressure,
+            </if>
+            <if test="hangingLoad != null" >
+                HangingLoad,
+            </if>
+            <if test="rotationRate != null" >
+                RotationRate,
+            </if>
+            <if test="torque != null" >
+                Torque,
+            </if>
+            <if test="kellyDown != null" >
+                KellyDown,
+            </if>
+            <if test="hookPosition != null" >
+                HookPosition,
+            </if>
+            <if test="hookSpeed != null" >
+                HookSpeed,
+            </if>
+            <if test="standpipePressurelog != null" >
+                StandpipePressurelog,
+            </if>
+            <if test="casingPressure != null" >
+                CasingPressure,
+            </if>
+            <if test="pumpStroke1 != null" >
+                PumpStroke1,
+            </if>
+            <if test="pumpStroke2 != null" >
+                PumpStroke2,
+            </if>
+            <if test="pumpStroke3 != null" >
+                PumpStroke3,
+            </if>
+            <if test="totalPoolSize != null" >
+                TotalPoolSize,
+            </if>
+            <if test="layTime != null" >
+                LayTime,
+            </if>
+            <if test="mudSpill != null" >
+                MudSpill,
+            </if>
+            <if test="inletFlowlog != null" >
+                InletFlowlog,
+            </if>
+            <if test="outletFlowlog != null" >
+                OutletFlowlog,
+            </if>
+            <if test="inletDensitylog != null" >
+                InletDensitylog,
+            </if>
+            <if test="outletDensitylog != null" >
+                OutletDensitylog,
+            </if>
+            <if test="entranceTempreture != null" >
+                EntranceTempreture,
+            </if>
+            <if test="exitTempreture != null" >
+                ExitTempreture,
+            </if>
+            <if test="totalHydrocarbon != null" >
+                TotalHydrocarbon,
+            </if>
+            <if test="h2S != null" >
+                H2S,
+            </if>
+            <if test="c1 != null" >
+                C1,
+            </if>
+            <if test="c2 != null" >
+                C2,
+            </if>
+            <if test="PWDDepth != null" >
+                PWDDepth,
+            </if>
+            <if test="PWDHangDownDeep != null" >
+                PWDHangDownDeep,
+            </if>
+            <if test="PWD_zzyl != null" >
+                PWD_zzyl,
+            </if>
+            <if test="PWD_hkyl != null" >
+                PWD_hkyl,
+            </if>
+            <if test="PWD_hkwd != null" >
+                PWD_hkwd,
+            </if>
+            <if test="PWD_cl_ECD != null" >
+                PWD_cl_ECD,
+            </if>
+            <if test="PWDWellDeviation != null" >
+                PWDWellDeviation,
+            </if>
+            <if test="PWDLocation != null" >
+                PWDLocation,
+            </if>
+            <if test="qztj != null" >
+                qztj,
+            </if>
+            <if test="upturnDepth != null" >
+                UpturnDepth,
+            </if>
+            <if test="operatorSchema != null" >
+                OperatorSchema,
+            </if>
+            <if test="standpipePressure != null" >
+                StandpipePressure,
+            </if>
+            <if test="measurementOfBackPressure != null" >
+                MeasurementOfBackPressure,
+            </if>
+            <if test="outletFlow != null" >
+                OutletFlow,
+            </if>
+            <if test="outletDensity != null" >
+                OutletDensity,
+            </if>
+            <if test="backPressurePumpFlow != null" >
+                BackPressurePumpFlow,
+            </if>
+            <if test="loopBackPressure != null" >
+                LoopBackPressure,
+            </if>
+            <if test="additionalBackPressure != null" >
+                AdditionalBackPressure,
+            </if>
+            <if test="inletFlow != null" >
+                InletFlow,
+            </if>
+            <if test="fixDepth != null" >
+                FixDepth,
+            </if>
+            <if test="fixPointDownDeep != null" >
+                FixPointDownDeep,
+            </if>
+            <if test="fixPointPressure != null" >
+                FixPointPressure,
+            </if>
+            <if test="wellMouthAdjustment != null" >
+                WellMouthAdjustment,
+            </if>
+            <if test="fixPointPressureLoss != null" >
+                FixPointPressureLoss,
+            </if>
+            <if test="boDongYL != null" >
+                BoDongYL,
+            </if>
+            <if test="yaHaoXZ != null" >
+                YaHaoXZ,
+            </if>
+            <if test="qiXiaZuanSD != null" >
+                QiXiaZuanSD,
+            </if>
+            <if test="qiXiaZuanJSD != null" >
+                QiXiaZuanJSD,
+            </if>
+            <if test="fixPointECD != null" >
+                FixPointECD,
+            </if>
+            <if test="drillECD != null" >
+                DrillECD,
+            </if>
+            <if test="drillStringPressureDrop != null" >
+                DrillStringPressureDrop,
+            </if>
+            <if test="drillBitPressureDrop != null" >
+                DrillBitPressureDrop,
+            </if>
+            <if test="environmentalControlPressureLoss != null" >
+                EnvironmentalControlPressureLoss,
+            </if>
+            <if test="targetBackPressure != null" >
+                TargetBackPressure,
+            </if>
+            <if test="hydrostaticPressure != null" >
+                HydrostaticPressure,
+            </if>
+            <if test="state_1 != null" >
+                State_1,
+            </if>
+            <if test="state_2 != null" >
+                State_2,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="dateTime != null" >
+                #{dateTime,jdbcType=VARCHAR},
+            </if>
+            <if test="time != null" >
+                #{time,jdbcType=DOUBLE},
+            </if>
+            <if test="wellDep != null" >
+                #{wellDep,jdbcType=DOUBLE},
+            </if>
+            <if test="hangDownDeep != null" >
+                #{hangDownDeep,jdbcType=DOUBLE},
+            </if>
+            <if test="depthOfTheDrillBit != null" >
+                #{depthOfTheDrillBit,jdbcType=DOUBLE},
+            </if>
+            <if test="drillDownDeep != null" >
+                #{drillDownDeep,jdbcType=DOUBLE},
+            </if>
+            <if test="drillingTime != null" >
+                #{drillingTime,jdbcType=DOUBLE},
+            </if>
+            <if test="bitPressure != null" >
+                #{bitPressure,jdbcType=DOUBLE},
+            </if>
+            <if test="hangingLoad != null" >
+                #{hangingLoad,jdbcType=DOUBLE},
+            </if>
+            <if test="rotationRate != null" >
+                #{rotationRate,jdbcType=DOUBLE},
+            </if>
+            <if test="torque != null" >
+                #{torque,jdbcType=DOUBLE},
+            </if>
+            <if test="kellyDown != null" >
+                #{kellyDown,jdbcType=DOUBLE},
+            </if>
+            <if test="hookPosition != null" >
+                #{hookPosition,jdbcType=DOUBLE},
+            </if>
+            <if test="hookSpeed != null" >
+                #{hookSpeed,jdbcType=DOUBLE},
+            </if>
+            <if test="standpipePressurelog != null" >
+                #{standpipePressurelog,jdbcType=DOUBLE},
+            </if>
+            <if test="casingPressure != null" >
+                #{casingPressure,jdbcType=DOUBLE},
+            </if>
+            <if test="pumpStroke1 != null" >
+                #{pumpStroke1,jdbcType=DOUBLE},
+            </if>
+            <if test="pumpStroke2 != null" >
+                #{pumpStroke2,jdbcType=DOUBLE},
+            </if>
+            <if test="pumpStroke3 != null" >
+                #{pumpStroke3,jdbcType=DOUBLE},
+            </if>
+            <if test="totalPoolSize != null" >
+                #{totalPoolSize,jdbcType=DOUBLE},
+            </if>
+            <if test="layTime != null" >
+                #{layTime,jdbcType=DOUBLE},
+            </if>
+            <if test="mudSpill != null" >
+                #{mudSpill,jdbcType=DOUBLE},
+            </if>
+            <if test="inletFlowlog != null" >
+                #{inletFlowlog,jdbcType=DOUBLE},
+            </if>
+            <if test="outletFlowlog != null" >
+                #{outletFlowlog,jdbcType=DOUBLE},
+            </if>
+            <if test="inletDensitylog != null" >
+                #{inletDensitylog,jdbcType=DOUBLE},
+            </if>
+            <if test="outletDensitylog != null" >
+                #{outletDensitylog,jdbcType=DOUBLE},
+            </if>
+            <if test="entranceTempreture != null" >
+                #{entranceTempreture,jdbcType=DOUBLE},
+            </if>
+            <if test="exitTempreture != null" >
+                #{exitTempreture,jdbcType=DOUBLE},
+            </if>
+            <if test="totalHydrocarbon != null" >
+                #{totalHydrocarbon,jdbcType=DOUBLE},
+            </if>
+            <if test="h2S != null" >
+                #{h2S,jdbcType=DOUBLE},
+            </if>
+            <if test="c1 != null" >
+                #{c1,jdbcType=DOUBLE},
+            </if>
+            <if test="c2 != null" >
+                #{c2,jdbcType=DOUBLE},
+            </if>
+            <if test="PWDDepth != null" >
+                #{PWDDepth,jdbcType=DOUBLE},
+            </if>
+            <if test="PWDHangDownDeep != null" >
+                #{PWDHangDownDeep,jdbcType=DOUBLE},
+            </if>
+            <if test="PWD_zzyl != null" >
+                #{PWD_zzyl,jdbcType=DOUBLE},
+            </if>
+            <if test="PWD_hkyl != null" >
+                #{PWD_hkyl,jdbcType=DOUBLE},
+            </if>
+            <if test="PWD_hkwd != null" >
+                #{PWD_hkwd,jdbcType=DOUBLE},
+            </if>
+            <if test="PWD_cl_ECD != null" >
+                #{PWD_cl_ECD,jdbcType=DOUBLE},
+            </if>
+            <if test="PWDWellDeviation != null" >
+                #{PWDWellDeviation,jdbcType=DOUBLE},
+            </if>
+            <if test="PWDLocation != null" >
+                #{PWDLocation,jdbcType=DOUBLE},
+            </if>
+            <if test="qztj != null" >
+                #{qztj,jdbcType=DOUBLE},
+            </if>
+            <if test="upturnDepth != null" >
+                #{upturnDepth,jdbcType=DOUBLE},
+            </if>
+            <if test="operatorSchema != null" >
+                #{operatorSchema,jdbcType=DOUBLE},
+            </if>
+            <if test="standpipePressure != null" >
+                #{standpipePressure,jdbcType=DOUBLE},
+            </if>
+            <if test="measurementOfBackPressure != null" >
+                #{measurementOfBackPressure,jdbcType=DOUBLE},
+            </if>
+            <if test="outletFlow != null" >
+                #{outletFlow,jdbcType=DOUBLE},
+            </if>
+            <if test="outletDensity != null" >
+                #{outletDensity,jdbcType=DOUBLE},
+            </if>
+            <if test="backPressurePumpFlow != null" >
+                #{backPressurePumpFlow,jdbcType=DOUBLE},
+            </if>
+            <if test="loopBackPressure != null" >
+                #{loopBackPressure,jdbcType=DOUBLE},
+            </if>
+            <if test="additionalBackPressure != null" >
+                #{additionalBackPressure,jdbcType=DOUBLE},
+            </if>
+            <if test="inletFlow != null" >
+                #{inletFlow,jdbcType=DOUBLE},
+            </if>
+            <if test="fixDepth != null" >
+                #{fixDepth,jdbcType=DOUBLE},
+            </if>
+            <if test="fixPointDownDeep != null" >
+                #{fixPointDownDeep,jdbcType=DOUBLE},
+            </if>
+            <if test="fixPointPressure != null" >
+                #{fixPointPressure,jdbcType=DOUBLE},
+            </if>
+            <if test="wellMouthAdjustment != null" >
+                #{wellMouthAdjustment,jdbcType=DOUBLE},
+            </if>
+            <if test="fixPointPressureLoss != null" >
+                #{fixPointPressureLoss,jdbcType=DOUBLE},
+            </if>
+            <if test="boDongYL != null" >
+                #{boDongYL,jdbcType=DOUBLE},
+            </if>
+            <if test="yaHaoXZ != null" >
+                #{yaHaoXZ,jdbcType=DOUBLE},
+            </if>
+            <if test="qiXiaZuanSD != null" >
+                #{qiXiaZuanSD,jdbcType=DOUBLE},
+            </if>
+            <if test="qiXiaZuanJSD != null" >
+                #{qiXiaZuanJSD,jdbcType=DOUBLE},
+            </if>
+            <if test="fixPointECD != null" >
+                #{fixPointECD,jdbcType=DOUBLE},
+            </if>
+            <if test="drillECD != null" >
+                #{drillECD,jdbcType=DOUBLE},
+            </if>
+            <if test="drillStringPressureDrop != null" >
+                #{drillStringPressureDrop,jdbcType=DOUBLE},
+            </if>
+            <if test="drillBitPressureDrop != null" >
+                #{drillBitPressureDrop,jdbcType=DOUBLE},
+            </if>
+            <if test="environmentalControlPressureLoss != null" >
+                #{environmentalControlPressureLoss,jdbcType=DOUBLE},
+            </if>
+            <if test="targetBackPressure != null" >
+                #{targetBackPressure,jdbcType=DOUBLE},
+            </if>
+            <if test="hydrostaticPressure != null" >
+                #{hydrostaticPressure,jdbcType=DOUBLE},
+            </if>
+            <if test="state_1 != null" >
+                #{state_1,jdbcType=DOUBLE},
+            </if>
+            <if test="state_2 != null" >
+                #{state_2,jdbcType=DOUBLE},
+            </if>
+        </trim>
+    </insert>
+    
+    
+</mapper>
