@@ -49,6 +49,7 @@ public class InvokePYModel {
 	        try {
 	        	String root_path = new File(this.getClass().getClassLoader().getResource("/").getPath()).getParent();
 	            String py_path = root_path + File.separator + "py" + File.separator + "invokeModel.py";
+	            //System.out.println("python " + py_path);
 	        	proc = Runtime.getRuntime().exec("python " + py_path);// 执行py文件
 	        	//用输入输出流来截取结果
 	            BufferedReader in = new BufferedReader(new InputStreamReader(proc.getInputStream()));
