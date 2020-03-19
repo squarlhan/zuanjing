@@ -41,6 +41,15 @@ public class UserController {
 		map.put("roleAllList", roleAllList);
 		return "back/user/userAdd";
 	}
+	
+	
+	@RequestMapping("/back/userMdi")
+	public String userMdi(Integer user_id,Map<String,Object> map){
+		User user = userService.load(user_id);
+		map.put("user", user);
+		return "back/user/userMdi";
+	}
+	
 	@RequestMapping("/back/userAddDo")
 	public String userAddDo(User user,MultipartFile photo,Map<String,Object> map) throws IllegalStateException, IOException{
 		if(photo!=null&&photo.getOriginalFilename()!=null&&photo.getOriginalFilename()!=""){
@@ -62,12 +71,7 @@ public class UserController {
 		userService.userAdd(user, map);//往前端传值，传map
 		return "back/main/message";
 	}
-	@RequestMapping("/back/userMdi")
-	public String userMdi(Integer user_id,Map<String,Object> map){
-		User user = userService.load(user_id);
-		map.put("user", user);
-		return "back/user/userMdi";
-	}
+
 	@RequestMapping("/back/userMdiDo")
 	public String userMdiDo(User user,MultipartFile photo,Map<String,Object> map) throws IllegalStateException, IOException{
 		if(photo!=null&&photo.getOriginalFilename()!=null&&photo.getOriginalFilename()!=""){

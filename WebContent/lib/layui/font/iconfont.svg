@@ -17,7 +17,12 @@ Created by iconfont
     units-per-em="1024"
     ascent="896"
     descent="-128"
-  ></font-face>
+  >
+  	<font-face-src>
+  		
+  	</font-face-src>
+  	
+  </font-face>
     <missing-glyph />
     
     <glyph glyph-name="x" unicode="x" horiz-adv-x="1001"

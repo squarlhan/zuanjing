@@ -31,7 +31,9 @@ public class Pmml {
        
         String root_path = new File(this.getClass().getClassLoader().getResource("/").getPath()).getParent();
         String pathxml = root_path + File.separator + "py" + File.separator + "lightgbm.pmml";
-//        String pathxml = "D:\\PythonPmml\\lightgbm.pmml";
+
+        
+
 //        File rootFile = new File(new File(this.getClass().getClassLoader().getResource("/").getPath()).getParent() + File.separator + "roottest.txt");
 //        File testFile = new File(this.getClass().getClassLoader().getResource("/").getPath() + File.separator+"test.txt");
 //        if (!testFile.exists()) {

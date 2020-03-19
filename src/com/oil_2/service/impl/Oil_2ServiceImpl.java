@@ -28,7 +28,9 @@ public class Oil_2ServiceImpl implements Oil_2Service {
 		return map;
 	}//查数据列表
 
-	//编到这里发现得用load，线不往下编了
+	
+	
+	
 	@Override
 	public Map<String, Object> oil_2Table(Double time) {
 		List<Oil_2> oil_2List = oil_2Mapper.oil_2Table(time);
@@ -38,8 +40,13 @@ public class Oil_2ServiceImpl implements Oil_2Service {
 	
 	@Override
 	public Map<String, Object> oil_2Add(Oil_2 oil_2, Map<String, Object> map) {
-		// 暂时不用
-		return null;
+		int result = oil_2Mapper.add(oil_2);
+		if(result>0){
+			map.put("message", "添加成功");
+		}else{
+			map.put("message", "添加失败");
+		}
+		return map;
 	}
 
 	@Override
