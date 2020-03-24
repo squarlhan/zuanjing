@@ -23,7 +23,7 @@
 	</head>
 	<body>
         <div class="x-body">
-            <blockquote class="layui-elem-quote">欢迎使用石油智能系统</blockquote>
+            <blockquote class="layui-elem-quote">智能钻井井下复杂监控与实时优化决策系统</blockquote>
             <fieldset class="layui-elem-field">
               <legend>信息统计</legend>
               <div class="layui-field-box">
@@ -65,7 +65,7 @@
             </table>
               </div>
             </fieldset>
-            <blockquote class="layui-elem-quote layui-quote-nm">开发者：&copy;【GC】</blockquote>
+            <blockquote class="layui-elem-quote layui-quote-nm">开发者：&copy;中国石油集团工程技术研究院有限公司</blockquote>
             
         </div>
         <script>

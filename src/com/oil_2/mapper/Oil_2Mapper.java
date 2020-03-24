@@ -11,7 +11,7 @@ public interface Oil_2Mapper {
 	 Integer add(Oil_2 oil_2);
 
 	 Oil_2 load(Double time);
-	 
+	 	//现在在用的
 	 Oil_2 load2(Integer time);
 
 	 Integer update(Oil_2 oil_2);
@@ -21,5 +21,7 @@ public interface Oil_2Mapper {
 	 Integer count(Map<String,Object> map);
 	    //单独查询
 	 List<Oil_2> oil_2Table(Double time);
+	 	//获取最新一条数据
+	 Oil_2 getNew();
 }
 

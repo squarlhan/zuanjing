@@ -28,9 +28,6 @@ public class Oil_2ServiceImpl implements Oil_2Service {
 		return map;
 	}//查数据列表
 
-	
-	
-	
 	@Override
 	public Map<String, Object> oil_2Table(Double time) {
 		List<Oil_2> oil_2List = oil_2Mapper.oil_2Table(time);
@@ -68,6 +65,12 @@ public class Oil_2ServiceImpl implements Oil_2Service {
 	@Override
 	public Map<String, Object> oil_2Del(Double time, Map<String, Object> map) {
 		return null;
+	}
+
+	
+	@Override
+	public Oil_2 oil_2New() {
+		return oil_2Mapper.getNew();
 	}
 
 

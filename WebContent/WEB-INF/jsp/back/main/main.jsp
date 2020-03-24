@@ -70,21 +70,7 @@
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
             </li>
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont">&#xe723;</i>
-                    <cite>优化分析</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a _href="order-list.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>模型优化</cite>
-                        </a>
-                    </li >
-                </ul>
-            </li>
+           
             <li>
                 <a href="javascript:;">
                     <i class="iconfont">&#xe726;</i>
@@ -118,6 +104,31 @@
                     </li >
                 </ul>
             </li>
+            
+             <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe723;</i>
+                    <cite>优化分析</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a _href="order-list.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>井筒压力安全智能</cite>
+                        </a>
+                    </li >
+                </ul>
+                <ul class="sub-menu">
+                    <li>
+                        <a _href="order-list.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>钻进参数优化分析</cite>
+                        </a>
+                    </li >
+                </ul>
+            </li>
+            
             <li>
                 <a href="javascript:;">
                     <i class="iconfont">&#xe6ce;</i>

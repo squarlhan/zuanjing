@@ -71,7 +71,7 @@
               <label for="L_repass" class="layui-form-label">
               </label>
               <button  class="layui-btn" lay-filter="add" lay-submit="">
-                  增加
+             		     增加
               </button>
           </div>
       </form>
@@ -86,7 +86,7 @@
           form.verify({
             nikename: function(value){
               if(value.length < 5){
-                return '昵称至少得5个字符啊';
+                return '昵称至少得5个字符';
               }
             }
             ,pass: [/(.+){6,12}$/, '密码必须6到12位']

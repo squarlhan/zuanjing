@@ -42,7 +42,7 @@ def readdata():
     '''
     seq_len = 500
     feathers = 56
-    # 打开数据库连接
+    # 打开数据库连接localhost:3308
     db = pymysql.connect("localhost", "root", "mysql", "yf15")
 
     # 使用 cursor() 方法创建一个游标对象 cursor

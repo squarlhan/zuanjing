@@ -22,6 +22,9 @@ public class MainController {
 	
 	@RequestMapping("/back/table")
 	public String table_demo(){
-		return "back/main/table_demo";
+		return "back/main/table_demo2";
 	}
+	
+
+	
 }

@@ -77,6 +77,18 @@
 		DateTime,Time,WellDep,HangDownDeep,DepthOfTheDrillBit,DrillDownDeep,DrillingTime,BitPressure,HangingLoad,RotationRate,Torque,KellyDown,HookPosition,HookSpeed,StandpipePressurelog,CasingPressure,PumpStroke1,PumpStroke2,PumpStroke3,TotalPoolSize,LayTime,MudSpill,InletFlowlog,OutletFlowlog,InletDensitylog,OutletDensitylog,EntranceTempreture,ExitTempreture,TotalHydrocarbon,H2S,C1,C2,PWDDepth,PWDHangDownDeep,PWD_zzyl,PWD_hkyl,PWD_hkwd,PWD_cl_ECD,PWDWellDeviation,PWDLocation,qztj,UpturnDepth,OperatorSchema,StandpipePressure,MeasurementOfBackPressure,OutletFlow,OutletDensity,BackPressurePumpFlow,LoopBackPressure,AdditionalBackPressure,InletFlow,FixDepth,FixPointDownDeep,FixPointPressure,WellMouthAdjustment,FixPointPressureLoss,BoDongYL,YaHaoXZ,QiXiaZuanSD,QiXiaZuanJSD,FixPointECD,DrillECD,DrillStringPressureDrop,DrillBitPressureDrop,EnvironmentalControlPressureLoss,TargetBackPressure,HydrostaticPressure,State_1,State_2
 	</sql>
     
+    
+    <select id="getNew" resultMap="BaseResultMap" >
+    	select * 
+    	FROM oil_2 
+    	ORDER BY id DESC 
+    	LIMIT 0,1 ;
+    </select>
+    
+    
+    
+    
+    
     <select id="load" resultMap="BaseResultMap" parameterType="java.lang.Double" >
         select  *
         from oil_2
