@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.main.InvokePYModel;
+import com.main.InvokePYModelold;
 import com.main.PageBean;
 import com.main.Pmml;
+import com.main.InvokePYModel;
 import com.oil.model.Oil;
 import com.oil_2.service.Oil_2Service;
 import com.oil_3.model.Oil_3;
@@ -39,8 +40,10 @@ public class Oil_2Controller {
 	@Autowired
 	private Oil_3Service oil_3Service;//测试数据库，用于读取数据
 	
-	double id = 1;//记录读取到哪了
-	Pmml pmml = new Pmml();
+	double id = 32004;//记录读取到哪了
+	
+	Pmml pmml = new Pmml();//陈希
+	InvokePYModel iPM = new InvokePYModel();//丰欣
 	
 	@RequestMapping("back/oil_2Mdi")
 	public String update(Double time,Map<String,Object> map){//Spring只要放在了控制值的参数上，自动实例化。从前端接收到的数据作为形参。
@@ -58,7 +61,7 @@ public class Oil_2Controller {
 	
 		Map<String, Double>  map2 = pmml.InputMap(oil_2);//陈希模型传入
 		int state_1 = Integer.parseInt(pmml.predictL(map2));//陈希模型预测（之后可以写成update，将预测的工况填写到state_1里）
-		InvokePYModel invokePYModel = new InvokePYModel();
+		InvokePYModelold invokePYModel = new InvokePYModelold();
 		int state_2 = invokePYModel.invokeModel();//-1异常，0正常，1复杂工况（目前只溢流）
 		
 		
@@ -108,23 +111,37 @@ public class Oil_2Controller {
 		return "back/oil_2/oil_2List";
 	}
 	
+	
 	@PostMapping(value="back/ajax_Demo_0")
 	@ResponseBody
 	public Map<String,Object> oil_2New() throws NumberFormatException, Exception{
 		
 		 Map<String,Object> map=new HashMap<>();
 		 
-		 Oil_3 oil_3  = oil_3Service.oil_3byId(id);
-			
+		 Oil_3 oil_3  = oil_3Service.oil_3byId(id);//从3里读取数据，存入2中。读取2中刚存入的数据，显示在屏幕里。
+		 										   //模拟2个数据库之间的数据交互。即3和2的交互。
+		 										   //3里读数据给2			
 		 id++;
 		//从3中读取1个
 		//Oil_3 oil_3 = oil_3Service.oil_3New();//这里应该无参数，做到定时读取下一条数据。
 		//将3中读取的添加到2中
+		 
+		 Map<String, Double>  map2 = pmml.InputMap(oil_3);//陈希模型传入
+		 double state_1 = Integer.parseInt(pmml.predictL(map2));//陈希模型预测（之后可以写成update，将预测的工况填写到state_1里）
+		 //InvokePYModel invokePYModel = new InvokePYModel();
+		 //double state_2 = invokePYModel.invokeModel();//-1异常，0正常，1复杂工况（目前只溢流）
+		 double state_2 = iPM.invokeModel();
+		 
+		 
+		 
+		 oil_3.setState_1(state_1);
+		 oil_3.setState_2(state_2);
+		 
 		
-		oil_2Service.oil_2Add(oil_3, map);//存
+		oil_2Service.oil_2Add(oil_3, map);//存。3中读取的数据加到2里
 		
 		//获取最新
-		Oil_2 oil_2 = oil_2Service.oil_2New();
+		Oil_2 oil_2 = oil_2Service.oil_2New();//2读最新的
 		
 		//map.put("oil_2",oil_2);
 		map.put("oil_2time",oil_2.getTime());//时间
@@ -137,23 +154,31 @@ public class Oil_2Controller {
 		map.put("oil_2standpipePressurelog", oil_2.getStandpipePressurelog());//立管压力
 		map.put("oil_2Date", oil_2.getDateTime());//获得日期
 		
-		Map<String, Double>  map2 = pmml.InputMap(oil_2);//陈希模型传入
-		int state_1 = Integer.parseInt(pmml.predictL(map2));//陈希模型预测（之后可以写成update，将预测的工况填写到state_1里）
-		//InvokePYModel invokePYModel = new InvokePYModel();
-		//int state_2 = invokePYModel.invokeModel();//-1异常，0正常，1复杂工况（目前只溢流）
+		
 		System.out.println("实际工况："+oil_2.getState_1()+"；state_1预测的工况："+state_1);
 		map.put("pmml_state_1", state_1);//工况1
-		//map.put("invoke_state_2", state_2);//工况2
+		map.put("invoke_state_2", state_2);//工况2
 		
 		return map;
 	}
 	
 	@RequestMapping("/back/ajax")
 	public String ajax_demo(){
-		id = 1;
+		id = 32004;
 		return "back/main/ajax_Demo";
 	}
 
+	@RequestMapping("/back/intable")
+	public String intable(){
+		id = 1;
+		return "back/main/table_demo2";
+	}
+	
+	@RequestMapping("/back/closeipm")
+	public String closeipm(){
+		InvokePYModel.termModel();//关闭连接
+		return "back/main/closeipm";
+	}
 	
 }
 

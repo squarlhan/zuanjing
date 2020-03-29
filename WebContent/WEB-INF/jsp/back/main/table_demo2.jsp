@@ -15,9 +15,26 @@
 
 		<script src="js/jquery-3.4.1.min.js" type="text/javascript"></script> 
         <script type="text/javascript" src="js/echarts.common.min.js" ></script>
+	    
+	   	<script>
+				
+				function holetest(){
+					var d = top.dialog({
+		    		    title: '关闭成功',
+		    		    width:50,
+		    		    url: 'back/closeipm',
+		    		    onclose:function(){
+		    		    	window.location.reload();
+		    		    }
+		    		});
+		    		d.showModal();
+				}		
+	    </script>		
 	    		
 	    		<!-- Bootstrap CSS -->
 	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	    <link rel="stylesheet" href="css/mynumkb.css">
+	     <style>*{padding:0;margin:0;}</style>
 	    <style>
 	                  .containerer{
 	                    width:100%;
@@ -64,7 +81,7 @@
 	
        <!-- <form class="layui-form layui-col-md12 x-so" action="back/oil_2Table" method="post"> -->
           <input type="text" name="oil_2_time"  placeholder="输入个时间" autocomplete="off" class="layui-input" id="time"><!-- value属性是为了将输入的值回显 value="${oil_2.time}" -->
-          <button value="点我显示数据" class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+          <button value="不要点这里" onclick="holetest()" class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i>不要点这里，会关闭模型</button>
       <!--  </form> -->
    
     <div class="container-fiuled">
@@ -163,31 +180,50 @@
            
             <section class="row clearfix" style="margin-bottom: 10px;">
                 <center class="cu col-md-3">泵冲（rpm）</center>
-	            <input class="col-md-2" id="1" type="number"  placeholder="请输入值">
+	            <!-- <input class="col-md-2" id="1" type="number"  placeholder="请输入值"> -->
+                <button id="subtract" onclick="sub('1',1)"style="width:20px;"> - </button>
+                <input class="col-md-2 " id="1" type="text" placeholder="请输入值">
+                <button id="plus" onclick="plus('1',1)"style="width:20px;">+</button>
+                
                 <center class="cu col-md-4">泥浆泵选取</center>
                 <select class="col-md-2" id="2">
                     <option selected="selected" disabled="disabled"  style='display: none' value=''></option>
-                    <option value ="volvo">Volvo</option>
-                    <option value ="saab">Saab</option>
-                    <option value="opel">Opel</option>
-                    <option value="audi">Audi</option>
+                    <option value ="volvo">1号泵</option>
+                    <option value ="saab">2号泵</option>
+                    <option value="opel">3号泵</option>
+                   
                 </select>
              </section>
              <section class="row  clearfix" style="margin-bottom: 10px;">
          		<center class="cu col-md-3">入口流量（L/s）</center>
-            	<input class="col-md-2" id="3" placeholder="计算并输入输入" type="number" onchange="jingkou(id,21,1,0)" oninput="jingkou(id,21,1,0)">
+            	<!-- <input class="col-md-2" id="3" placeholder="计算并输入输入" type="number" onchange="jingkou(id,21,1,0)" oninput="jingkou(id,21,1,0)">
+                 -->
+                <button id="subtract" onclick="sub('3',0.01)"style="width:20px;"> - </button>
+                <input class="col-md-2" id="3" type="text"  name="shuru"  placeholder="计算并输入输入">
+                <button id="subtract" onclick="plus('3',0.01)"style="width:20px;"> + </button>
+                
                 
 	            <center class="cu col-md-4">出口流量（L/s）</center>
-	            <input class="col-md-2" type="text" placeholder="测量值"  id="4"><!-- value="${oil_2.outletFlow}" -->
+	            <input class="col-md-2" type="text" placeholder="测量值"  id="4"  ondblclick="shuangji()"><!-- value="${oil_2.outletFlow}" -->
 	                
-                <div class="col-md-1">
+	             <script>function shuangji(){
+                    alert("双击");
+                }</script>   
+	                
+	                
+                <!-- <div class="col-md-1">
                     <button class="btn btn-success btn-sm" type="submit">拟合</button>
-                </div>
+                </div> -->
              </section>
              <section class="row">
-                <center class="cu col-md-3">入口密度（g/cm3）</center>
-                <input class="col-md-2" id="11" type="number"   placeholder="请输入值？" ><!--  value="${oil_2.inletDensitylog}" -->
-                <center class="cu col-md-4">出口密度（g/cm3）</center>
+                <center class="cu col-md-3">入口密度（g/cm³）</center>
+                <!-- <input class="col-md-2" id="11" type="number"   placeholder="请输入值？" > --><!--  value="${oil_2.inletDensitylog}" -->
+                <button id="subtract" onclick="sub('11',0.01)"style="width:20px;"> - </button>
+                <input class="col-md-2" id="11" type="text"   placeholder="请输入值" ><!--  value="${oil_2.inletDensitylog}" -->                
+                <button id="subtract" onclick="plus('11',0.01)"style="width:20px;"> + </button>
+                
+                
+                <center class="cu col-md-4">出口密度（g/cm<sub>3</sub>）</center>
                 <input class="col-md-2" type="text"   id="12"   placeholder="测量值"  ><!-- value="${oil_2.outletDensitylog}" -->
              </section>
          </div>
@@ -199,13 +235,25 @@
             <section class="row clearfix" style="margin-bottom: 0px;">
             
                 <center class="cu col-md-2">立管压力（MPa）</center>
+                <button style="width:20px;margin-left:-20px;"></button>
                 <input class="col-md-2" type="text"  placeholder="测量值" id="5"><!--  value="${oil_2.standpipePressurelog}" -->
-                <center class="cu col-md-2">节流后压（MPa）</center>
-                <input class="col-md-2" type="text"  placeholder="不知道对应哪个字段"   id="6">
-                 <center class="cu col-md-2">环空摩阻（MPa）</center>
-<!--                 <input class="col-md-2" id="7" type="number"  placeholder="请输入值" >
- -->                <input  id="7" type="number" step="0.1" style ="width:200px"  placeholder="请输入值" >
+                <button style="width:20px;"></button>
                 
+                <center class="cu col-md-2">节流后压力（MPa）</center>
+              <!--   <input class="col-md-2" type="text"  placeholder="请输入值 "   id="6"> -->
+                 <button id="subtract" onclick="sub('6',0.01)"style="width:20px;margin-left:-20px;"> - </button>
+                <input  class="col-md-2" id="6" type="text" step="0.1" style ="width:200px" placeholder="请输入值" >
+                <button id="subtract" onclick="plus('6',0.01)"style="width:20px;"> + </button>
+                
+                
+                
+                <center class="cu col-md-2">环空摩阻（MPa）</center>
+<!--            <input class="col-md-2" id="7" type="number"  placeholder="请输入值" >
+ -->            <!-- <input  id="7" type="number" step="0.1" style ="width:200px"  placeholder="请输入值" > -->
+               
+                <button id="subtract" onclick="sub('7',0.01)"style="width:20px;margin-left:-20px;"> - </button>
+                <input  id="7" type="text" step="0.1" style ="width:200px" placeholder="请输入值" >
+                <button id="subtract" onclick="plus('7',0.01)"style="width:20px;"> + </button>
                 
                 
              </section>
@@ -214,12 +262,25 @@
             </section>
             <section class="row clearfix" style="margin-bottom: 5px;">
                  <center class="cu col-md-2">安全压力余量（MPa）</center>
-                <input class="col-md-2" id="8" type="number"   placeholder="请输入值" >
+                <!-- <input class="col-md-2" id="8" type="number"   placeholder="请输入值" > -->
+                <button id="subtract" onclick="sub('8',0.01)"style="width:20px;margin-left:-20px;"> - </button>
+                <input class="col-md-2" id="8" type="text" placeholder="请输入值" >
+                <button id="subtract" onclick="plus('8',0.01)"style="width:20px;"> + </button>
+                
+                
                 <center class="cu col-md-2" >回压设置（MPa）</center>
-                <input class="col-md-2" id="9" type="number"   placeholder="请输入值"  onchange="jingkou(id,20,1,1)" oninput="jingkou(id,20,1,1)">
+               <!--  <input class="col-md-2" id="9" type="number"   placeholder="请输入值"  onchange="jingkou(id,20,1,1)" oninput="jingkou(id,20,1,1)"> -->
+                <button id="subtract" onclick="sub('9',0.01)"style="width:20px;margin-left:-20px;"> - </button>
+                <input class="col-md-2" id="9" type="text" placeholder="请输入值">
+                <button id="subtract" onclick="plus('9',0.01)"style="width:20px;"> + </button>
+                
                 <center class="cu col-md-2" >回压测量（MPa）</center>
+                 <button style="width:20px;margin-left:-20px;"></button>
                 <%-- <input class="col-md-2" type="text" id="10"   placeholder="测量值"  value="${oil_2.wellMouthAdjustment}">
            --%><input  type="text" id="10" style ="width:200px"  placeholder="测量值">
+           		 <button style="width:20px;"></button>
+            
+            
             </section>
         </div>
         </div>
@@ -281,7 +342,7 @@
       
         </script>
    
-    <script  type='text/javascript'>
+     <script  type='text/javascript'>
 			    //假设每隔5秒发送一次请求
 			     window.onload = function () {
 			        getApi();
@@ -308,7 +369,8 @@
 				        async: false,
 				        success:function (data) {
 				            optionJson=data;			      
-				            optionJson.oil_2time
+				            //optionJson.oil_2time
+				            console.log(data);
 				            var state1 = optionJson.pmml_state_1;
 				            var state_1 = "";
 				            var state2 = optionJson.invoke_state_2;
@@ -328,8 +390,15 @@
 				            }else{
 				            	state_1="暂无";
 				            }
-				           
-				            document.getElementById("time").value = optionJson.oil_2time;
+
+				            if(state2==0){
+				            	state_2="工况正常";
+				            }else if(state2==1){
+				            	state_2="溢流";
+				            }else {
+				            	state_2="模型加载";
+				            }
+				           	document.getElementById("time").value = optionJson.oil_2time;
 				            //工况1
 				            document.getElementById("gongkuang").innerHTML = state_1;//optionJson.pmml_state_1.eq(0)?'停泵': optionJson.pmml_state_1.eq(1)?'钻进':optionJson.pmml_state_1.eq(2)?'循环':optionJson.pmml_state_1.eq(3)?'接单根':optionJson.pmml_state_1.eq(4)?'起钻':optionJson.pmml_state_1.eq(5)?'下钻':'暂无';
 				            //入口流量
@@ -338,7 +407,7 @@
 							document.getElementById("4").value = optionJson.oil_2outletFlow;
 							outletFlow=optionJson.oil_2outletFlow;
 				            //入口密度
-							document.getElementById("11").value = optionJson.oil_2inletDensitylog;
+							//document.getElementById("11").value = optionJson.oil_2inletDensitylog;
 							//出口密度
 							document.getElementById("12").value = optionJson.oil_2outletDensitylog;
 							//立管压力
@@ -346,7 +415,7 @@
 							//回压测量
 							document.getElementById("10").value = optionJson.oil_2wellMouthAdjustment;
 							//工况2
-				            document.getElementById("gongkuang2").innerHTML = "程序异常";//optionJson.invoke_state_2.eq(2) ?'程序异常':optionJson.invoke_state_2.eq(0)?'正常工况':optionJson.invoke_state_2.eq(1)?'溢流':'警报状态';
+				            document.getElementById("gongkuang2").innerHTML = state_2;//optionJson.invoke_state_2.eq(2) ?'程序异常':optionJson.invoke_state_2.eq(0)?'正常工况':optionJson.invoke_state_2.eq(1)?'溢流':'警报状态';
 				        	//图1日期
 							dateTime1 = optionJson.oil_2Date;
 				        	//流量偏差,出-入
@@ -361,7 +430,7 @@
 		    	  
 			    
                    function randomData(x,rukouliuliang) { //入口流量生成函数，参数是实时日期和入口流量，将其转化为二元组
-                            var riqi=x.substring(0,10);//获取实时日期
+                            var riqi=x.substring(0,17);//获取实时日期
 		    	            return {  
 		    	                name: riqi,
 		    	                
@@ -709,10 +778,56 @@
         }, 100);  
      </script>
      
+	 <script>
+        function onshow(){
+            var thenumber=document.getElementById("3").value;
+           //let endnumber= myChartmyChart.getOption().dataZoom.end;
+           //endnumber=thenumber;
+           //option1=endnumber;
+          var op= myChartmyChart.getOption();
+            op.dataZoom[0].end =thenumber;
+            //option1.animation = false;
+            //console.log(op.dataZoom[0].end);
+            myChartmyChart.setOption(op,true);
+        }
+    </script>
+
+    <!--虚拟数字键盘-->
+    <script src="js/mynumkb.js" charset="utf-8"></script>
+    
+    <script>
+        $("#1").mynumkb();
+        $("#3").mynumkb();
+        $("#11").mynumkb();
+        $("#6").mynumkb();
+        $("#7").mynumkb();
+        $("#8").mynumkb();
+        $("#9").mynumkb();
+        $("#10").mynumkb();
+        $("#13").mynumkb();
+        $("#14").mynumkb();
+        $("#15").mynumkb();
+        
+       // $("#12").mynumkb();
+    </script>
 	
-	
-         
-     <script type="text/javascript">
+	<script>
+		    function plus(id,number){
+		      var i = Number(document.getElementById(id).value);
+		      i=i+number;
+		     // console.log(i);
+		
+		      document.getElementById(id).value = String(i.toFixed(2));
+		    }
+		    function sub(id,number){
+		      var i = Number(document.getElementById(id).value);
+		      i=i-number;
+		      document.getElementById(id).value = String(i.toFixed(2));
+		    }
+  
+	</script>
+	       
+    <script type="text/javascript">
 	    	function pumpAdd() {
 	    		var d = top.dialog({
 	    		    title: '泵参数',
