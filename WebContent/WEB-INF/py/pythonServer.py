@@ -73,8 +73,8 @@ def readdata():
     '''
     seq_len = 500
     feathers = 56
-    # 打开数据库连接
-    #db = pymysql.connect("127.0.0.1:3306", "root", "", "yf15")
+    # 打开数据库连接：3308，mysql
+    #db = pymysql.connect("127.0.0.1", "root", "", "yf15")
     db = pymysql.connect(
     host='localhost',
     port=3306,

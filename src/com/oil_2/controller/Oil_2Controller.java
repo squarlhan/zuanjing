@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.main.InvokePYModelold;
+
 import com.main.PageBean;
 import com.main.Pmml;
 import com.main.InvokePYModel;
@@ -61,20 +61,20 @@ public class Oil_2Controller {
 	
 		Map<String, Double>  map2 = pmml.InputMap(oil_2);//陈希模型传入
 		int state_1 = Integer.parseInt(pmml.predictL(map2));//陈希模型预测（之后可以写成update，将预测的工况填写到state_1里）
-		InvokePYModelold invokePYModel = new InvokePYModelold();
-		int state_2 = invokePYModel.invokeModel();//-1异常，0正常，1复杂工况（目前只溢流）
+	
+		//int state_2 = invokePYModel.invokeModel();//-1异常，0正常，1复杂工况（目前只溢流）
 		
 		
 		//
 		map.put("oil_2", oil_2);
 		map.put("pmml_state_1", state_1);
-		map.put("invoke_state_2", state_2);
+		//map.put("invoke_state_2", state_2);
 		
 		
 		System.out.println(oil_2_time);
 		System.out.println(map);
 		System.out.println("实际工况："+oil_2.getState_1()+"；state_1预测的工况："+state_1);
-		System.out.println("state_2预测:"+state_2);
+		//System.out.println("state_2预测:"+state_2);
 		return "back/main/table_demo2";
 	}
 	
@@ -128,16 +128,11 @@ public class Oil_2Controller {
 		 
 		 Map<String, Double>  map2 = pmml.InputMap(oil_3);//陈希模型传入
 		 double state_1 = Integer.parseInt(pmml.predictL(map2));//陈希模型预测（之后可以写成update，将预测的工况填写到state_1里）
-		 //InvokePYModel invokePYModel = new InvokePYModel();
-		 //double state_2 = invokePYModel.invokeModel();//-1异常，0正常，1复杂工况（目前只溢流）
-		 double state_2 = iPM.invokeModel();
-		 
-		 
-		 
+		 //double state_2 = iPM.invokeModel();//0正常.1溢流.2异常
+
 		 oil_3.setState_1(state_1);
-		 oil_3.setState_2(state_2);
-		 
-		
+		 oil_3.setState_2(0.0);
+		 		
 		oil_2Service.oil_2Add(oil_3, map);//存。3中读取的数据加到2里
 		
 		//获取最新
@@ -155,9 +150,10 @@ public class Oil_2Controller {
 		map.put("oil_2Date", oil_2.getDateTime());//获得日期
 		
 		
-		System.out.println("实际工况："+oil_2.getState_1()+"；state_1预测的工况："+state_1);
+		System.out.println("state_1预测的工况："+state_1);
+		System.out.println("state_2预测的工况："+0);
 		map.put("pmml_state_1", state_1);//工况1
-		map.put("invoke_state_2", state_2);//工况2
+		map.put("invoke_state_2", 2);//工况2
 		
 		return map;
 	}
@@ -170,7 +166,7 @@ public class Oil_2Controller {
 
 	@RequestMapping("/back/intable")
 	public String intable(){
-		id = 1;
+		
 		return "back/main/table_demo2";
 	}
 	

@@ -15,21 +15,6 @@
 
 		<script src="js/jquery-3.4.1.min.js" type="text/javascript"></script> 
         <script type="text/javascript" src="js/echarts.common.min.js" ></script>
-	    
-	   	<script>
-				
-				function holetest(){
-					var d = top.dialog({
-		    		    title: '关闭成功',
-		    		    width:50,
-		    		    url: 'back/closeipm',
-		    		    onclose:function(){
-		    		    	window.location.reload();
-		    		    }
-		    		});
-		    		d.showModal();
-				}		
-	    </script>		
 	    		
 	    		<!-- Bootstrap CSS -->
 	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -78,10 +63,10 @@
 	</head>
 	<!-- <body body scroll="no" style="overflow-x:hidden;overflow-y:hidden"> -->
 	<body>
-	
+		
        <!-- <form class="layui-form layui-col-md12 x-so" action="back/oil_2Table" method="post"> -->
           <input type="text" name="oil_2_time"  placeholder="输入个时间" autocomplete="off" class="layui-input" id="time"><!-- value属性是为了将输入的值回显 value="${oil_2.time}" -->
-          <button value="不要点这里" onclick="holetest()" class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i>不要点这里，会关闭模型</button>
+          <button value="点我显示数据" class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
       <!--  </form> -->
    
     <div class="container-fiuled">
@@ -173,7 +158,26 @@
                </div>  
            </section>
         </div>
-        
+		
+		<div class="border border-primary "style="margin-left:5px;margin-bottom: 5px;margin-right:5px;">
+        <div class="clearfix" style="margin-top: 5px;">
+			<section class="row clearfix" >
+                <button id="sum" type="button" style="height: 30px;margin-left: 20px;">累加</button>
+                <div class="col-md-4">
+                    <center class="cu ">入口流量累积</center>
+                    <center  id="RuKouLiuLiangLeiJi">&nbsp;</center>
+                </div>
+                <div class="col-md-4">
+                    <center class="cu ">出口流量累积</center>
+                    <center  id="ChuKouLiuLiangLeiJi">&nbsp;</center> 
+                </div>
+                <div class="col-md-3">
+				<center class="cu ">差值</center>
+                <center  id="ChaZhi">&nbsp;</center>
+                </div>
+			</section>
+		</div>
+		</div>
         <!-- 框1 -->
         <div class="border border-primary "style="margin-left:5px;margin-bottom: 5px;margin-right:5px;">
          <div class="clearfix" style="margin-top: 10px;margin-bottom: 10px;">
@@ -234,27 +238,30 @@
             <div class="clearfix" style="margin-top: 10px;">
             <section class="row clearfix" style="margin-bottom: 0px;">
             
-                <center class="cu col-md-2">立管压力（MPa）</center>
-                <button style="width:20px;margin-left:-20px;"></button>
-                <input class="col-md-2" type="text"  placeholder="测量值" id="5"><!--  value="${oil_2.standpipePressurelog}" -->
-                <button style="width:20px;"></button>
-                
+				<center class="cu col-md-2">立管压力（MPa）</center>
+				<div class="col-md-2" style=" text-align:center; ">
+                <button id="subtract" onclick="sub('5',0.01)"style="width:15px;">-</button>
+                <input style ="width:130px" type="text"  placeholder="测量值" id="5"><!--  value="${oil_2.standpipePressurelog}" -->
+                <button id="subtract" onclick="plus('5',0.01)">+</button>
+			</div>
+
                 <center class="cu col-md-2">节流后压力（MPa）</center>
-              <!--   <input class="col-md-2" type="text"  placeholder="请输入值 "   id="6"> -->
-                 <button id="subtract" onclick="sub('6',0.01)"style="width:20px;margin-left:-20px;"> - </button>
-                <input  class="col-md-2" id="6" type="text" step="0.1" style ="width:200px" placeholder="请输入值" >
-                <button id="subtract" onclick="plus('6',0.01)"style="width:20px;"> + </button>
-                
+			  <!--   <input class="col-md-2" type="text"  placeholder="请输入值 "   id="6"> -->
+			  <div class="col-md-2" style=" text-align:center; ">
+                 <button id="subtract" onclick="sub('6',0.01)"style="width:15px;"> - </button>
+                <input   id="6" type="text" step="0.1" style ="width:130px" placeholder="请输入值" >
+                <button id="subtract" onclick="plus('6',0.01)"> + </button>
+			</div>
                 
                 
                 <center class="cu col-md-2">环空摩阻（MPa）</center>
 <!--            <input class="col-md-2" id="7" type="number"  placeholder="请输入值" >
  -->            <!-- <input  id="7" type="number" step="0.1" style ="width:200px"  placeholder="请输入值" > -->
-               
-                <button id="subtract" onclick="sub('7',0.01)"style="width:20px;margin-left:-20px;"> - </button>
-                <input  id="7" type="text" step="0.1" style ="width:200px" placeholder="请输入值" >
-                <button id="subtract" onclick="plus('7',0.01)"style="width:20px;"> + </button>
-                
+ 			<div class="col-md-2" style=" text-align:center; ">
+                <button id="subtract" onclick="sub('7',0.01)"style="width:15px;"> - </button>
+                <input  id="7" type="text" step="0.1" style ="width:130px" placeholder="请输入值" >
+                <button id="subtract" onclick="plus('7',0.01)"> + </button>
+			</div>
                 
              </section>
              <section class="row clearfix" style="margin-bottom: 5px;">
@@ -263,37 +270,58 @@
             <section class="row clearfix" style="margin-bottom: 5px;">
                  <center class="cu col-md-2">安全压力余量（MPa）</center>
                 <!-- <input class="col-md-2" id="8" type="number"   placeholder="请输入值" > -->
-                <button id="subtract" onclick="sub('8',0.01)"style="width:20px;margin-left:-20px;"> - </button>
-                <input class="col-md-2" id="8" type="text" placeholder="请输入值" >
-                <button id="subtract" onclick="plus('8',0.01)"style="width:20px;"> + </button>
+                
+				<div class="col-md-2" style=" text-align:center; ">
+                    <button  id="AnQuanYaLiYuLiangsubstract" onclick="sub('8',0.01)" style="width: 15px;">-</button>
+                    <input  id="8" type="text" style="width:130px;"placeholder="请输入值" >
+                    <button id="AnQuanYaLiYuLiangplus" onclick="plus('8',0.01)">+</button>
+                </div>
                 
                 
                 <center class="cu col-md-2" >回压设置（MPa）</center>
                <!--  <input class="col-md-2" id="9" type="number"   placeholder="请输入值"  onchange="jingkou(id,20,1,1)" oninput="jingkou(id,20,1,1)"> -->
-                <button id="subtract" onclick="sub('9',0.01)"style="width:20px;margin-left:-20px;"> - </button>
-                <input class="col-md-2" id="9" type="text" placeholder="请输入值">
-                <button id="subtract" onclick="plus('9',0.01)"style="width:20px;"> + </button>
                 
-                <center class="cu col-md-2" >回压测量（MPa）</center>
-                 <button style="width:20px;margin-left:-20px;"></button>
-                <%-- <input class="col-md-2" type="text" id="10"   placeholder="测量值"  value="${oil_2.wellMouthAdjustment}">
-           --%><input  type="text" id="10" style ="width:200px"  placeholder="测量值">
-           		 <button style="width:20px;"></button>
-            
+				<div class="col-md-2" style=" text-align:center; ">
+                    <button id="JingKouYaLiSub" onclick="hysub('9',0.01)" style="width: 15px;">-</button>
+                    <input  id="9" type="text"style="width:130px;" name="hyInput" onchange="hyChange()"oninput="if(value<0)value=0;if(value>100)value=100;" placeholder="请输入值" value="0">
+                    <button id="JingKouYaLiPlus" onclick="hyplus('9',0.01)"> + </button>
+                </div>
+                
+                
+				<center class="cu col-md-2" >回压测量（MPa）</center>
+				<div class="col-md-2" style=" text-align:center; ">
+                 <button id="HuiYaCeLiang" onclick="sub('10',0.01)" style="width: 15px;" >-</button>
+                <%-- <input  type="text" id="10"   placeholder="测量值"  value="${oil_2.wellMouthAdjustment}">
+           --%><input  type="text" id="10" style ="width:130px"  placeholder="测量值">
+           		 <button id="HuiYaCeLiangAdd" onclick="plus('10',0.01)">+</button>
+				</div>
             
             </section>
         </div>
         </div>
 
        	<!-- 调节 -->
-        <div style="margin-top: 20px;margin-bottom: 20px;">
-            <section class="row">
-                <center class="cu col-md-2">节流阀A开度（%）</center>
-                <input class="col-md-2" id="13" type="number" placeholder="0~100" oninput="if(value > 100 || value < 0 ){value = ''}">
-                <center class="cu col-md-2">节流阀B开度（%）</center>
-                <input class="col-md-2" type="number"   id="14" placeholder="0~100" oninput="if(value > 100 || value < 0 ){value = ''}">
-                <center class="cu col-md-2">节流阀C开度（%）</center>
-                <input  type="number"   id="15" placeholder="0~100" oninput="if(value > 100 || value < 0 ){value = ''}" style ="width:200px">
+        <div style="margin-top: 20px;margin-bottom: 20px;margin-left:5px;margin-right:5px;">
+            <section class="row clearfix" style="margin-bottom: 5px;">
+				<center class="cu col-md-2">节流阀A开度（%）</center>
+				<div class="col-md-2" style=" text-align:center; ">
+					<button id="Akaidu" onclick="sub('13',1)" style="width: 15px;" >-</button>
+				<input style="width:130px;" id="13" type="number" placeholder="0~100" oninput="if(value > 100 || value < 0 ){value = ''}">
+				<button id="Akaidu2" onclick="plus('13',1)">+</button>
+			</div>
+				<center class="cu col-md-2">节流阀B开度（%）</center>
+				<div class="col-md-2" style=" text-align:center; ">
+					<button id="Akaidu" onclick="sub('14',1)" style="width: 15px;" >-</button>
+				<input style="width:130px;"  type="number"   id="14" placeholder="0~100" oninput="if(value > 100 || value < 0 ){value = ''}">
+				<button id="Akaidu2" onclick="plus('14',1)">+</button>
+			</div>
+				<center class="cu col-md-2">节流阀C开度（%）</center>
+				
+				<div class="col-md-2" style=" text-align:center; ">
+					<button id="Akaidu" onclick="sub('15',1)" style="width: 15px;" >-</button>
+				<input  type="number"   id="15" placeholder="0~100" oninput="if(value > 100 || value < 0 ){value = ''}" style="width:130px;" >
+				<button id="Akaidu2" onclick="plus('15',1)">+</button>
+			</div>
             </section>
         </div>
         
@@ -316,12 +344,25 @@
             <button class="col-md-2 btn-success btn-lg " id="button-2">警报设置</button>
             <h1 style ="width:465px" align="center" id="gongkuang2"><%-- ${invoke_state_2 eq 2 ?'程序异常':invoke_state_2 eq 0?'正常工况':invoke_state_2 eq 1?'溢流':'警报状态'} --%></h1>
             <button class="col-md-2 btn-success btn-lg " id="button-3">自动控制</button>
-            <button class="col-md-2 btn-success btn-lg " id="button-4">手动控制</button>
+            <button class="col-md-2 btn-success btn-lg " id="button-4" >手动控制</button>
             </section>
-        </div>
-   
+		</div>
+		
+	<!--	<div>
+			<section class="row">
+				<button id="sum" type="button">累加</button>
+				<p class="col-md-2">入口流量累积</p>
+				<p class="col-md-2" id="RuKouLiuLiangLeiJi"></p>
+				<p class="col-md-2">出口流量累积</p>
+				<p class="col-md-2" id="ChuKouLiuLiangLeiJi"></p>
+				<p class="col-md-2">差值</p>
+				<p class="col-md-2" id="ChaZhi"></p>
+			</section>
+		
+		</div>-->
    
    	 </div>
+    
      
      
      <script type='text/javascript'>
@@ -341,36 +382,125 @@
      
       
         </script>
+      
+	 <script  type='text/javascript'>
+	 
+	 var inletLeiJiaHe=0;//累加和
+	 var outletLeiJiaHe=0;
+	 var ChaZhi=0;
+     Date.prototype.clone=function(){
+    	  return new Date(this.valueOf());
+    	}
+
+        function convertString(dateString) { //将前面添加20
+        	var convert="20"+dateString;
+            return convert;
+        } 
+
+        function randomData(x,rukouliuliang) { //入口流量生成函数，参数是实时日期和入口流量，将其转化为二元组
+            var riqi=x.substring(0,17);//获取实时日期
+            return {  
+                name: riqi,
+                
+                value: [  
+                    riqi,
+                     rukouliuliang //将下面生成的随机数value四舍五入
+                ]  //返回一个数组
+                 
+            }  
+    }
    
-     <script  type='text/javascript'>
-			    //假设每隔5秒发送一次请求
+
+  function newRandom(){
+return  {
+    name:myNow.toString(),
+    value:[
+[myNow.getFullYear(), myNow.getMonth() + 1, myNow.getDate()].join('/'),  //join方法用于把数组中的所有元素放入一个字符串。元素是通过指定的分隔符进行分隔的。
+                    Math.round(myValue) //将下面生成的随机数value四舍五入
+]}
+}
+
+
+    function randomZero(x,rukouliuliang){//x是Date类型
+            return{
+                name:x.toString(),//将Date类型转换为String格式
+                value:[x,rukouliuliang]//暂时这么返回
+            }
+   }
+                //假设每隔5秒发送一次请求
+                var dateFlag=true;//第一次立flag
 			     window.onload = function () {
-			        getApi();
+                    
+                    getApi();
+                    
 			    } 
 			    var myData=[];//设定值
-			    var myData2=[];//实际值
+			    var myData2=[];//实际值    回压测量值！！！
 			    var data=[];//入口流量
 			    var data2=[];//出口流量
 			    
 			    var inletFlow;//入口流量更新值
 			    var outletFlow;//出口流量更新值
 			    
+			    var huiyaCL;//回压测量值  id=10
+			    var huiyaSD=0;//回压设定值
+			    
+			    
 			    var dateTime1;//日期
 			    
+			    var only=0;//
 			    
+			    //回压设定值监听------------------------------
+			   	
+			    
+			     function hyChange(){
+			    	huiyaSD = document.getElementById("9").value;
+			    	 console.log(huiyaSD);
+			    	
+			    }
+			    
+			     function hyplus(id,number){
+				      var i = Number(document.getElementById(id).value);
+				      i=i+number;
+				     // console.log(i);
+				  	  huiyaSD = i;
+				      document.getElementById(id).value = String(i.toFixed(2));
+				    }
+			    function hysub(id,number){
+				      var i = Number(document.getElementById(id).value);
+				      i=i-number;
+				      huiyaSD = i;
+				      document.getElementById(id).value = String(i.toFixed(2));
+				    }
+			    //-------------------------------------------
+			    
+			    
+			    
+			    
+			    
+			    
+				var timeFlag=true;//设置时间flag，当flag为真时，五秒钟ajax一次，为假，一秒钟一次
 			    function getApi() {
-			        //设置时间 5-秒  1000-毫秒  这里设置你自己想要的时间 
-			        setTimeout(getApi,1*1000);
+					if(timeFlag){
+						setTimeout(getApi,5*1000);//五秒
+						timeFlag=false;
+					}else{
+  //设置时间 5-秒  1000-毫秒  这里设置你自己想要的时间 
+  setTimeout(getApi,1*1000);
+  timeFlag=false;
+					}
+			      
 			        var optionJson=[];
 				    $.ajax({
 				        type:"POST",
 				        url:"back/ajax_Demo_0",
-				        data:{},
-				        async: false,
-				        success:function (data) {
-				            optionJson=data;			      
+                        dataType:'json',
+                        //  data:{},
+				        async: true,
+				        success:function (Data) {
+				            optionJson=Data;			      
 				            //optionJson.oil_2time
-				            console.log(data);
+				         //   console.log(data);
 				            var state1 = optionJson.pmml_state_1;
 				            var state_1 = "";
 				            var state2 = optionJson.invoke_state_2;
@@ -390,7 +520,7 @@
 				            }else{
 				            	state_1="暂无";
 				            }
-
+				            
 				            if(state2==0){
 				            	state_2="工况正常";
 				            }else if(state2==1){
@@ -398,14 +528,19 @@
 				            }else {
 				            	state_2="模型加载";
 				            }
-				           	document.getElementById("time").value = optionJson.oil_2time;
+				           
+				            numberTime=optionJson.oil_2time;
+				            document.getElementById("time").value = optionJson.oil_2time;
 				            //工况1
 				            document.getElementById("gongkuang").innerHTML = state_1;//optionJson.pmml_state_1.eq(0)?'停泵': optionJson.pmml_state_1.eq(1)?'钻进':optionJson.pmml_state_1.eq(2)?'循环':optionJson.pmml_state_1.eq(3)?'接单根':optionJson.pmml_state_1.eq(4)?'起钻':optionJson.pmml_state_1.eq(5)?'下钻':'暂无';
 				            //入口流量
 				            inletFlow = optionJson.oil_2inletFlow;
+							inletLeiJiaHe+=inletFlow;//入口流量累加
 				            //出口流量
 							document.getElementById("4").value = optionJson.oil_2outletFlow;
 							outletFlow=optionJson.oil_2outletFlow;
+							outletFlow+=outletLeiJiaHe;//出口流量累加
+							ChaZhi=inletLeiJiaHe-outletLeiJiaHe;//差值计算
 				            //入口密度
 							//document.getElementById("11").value = optionJson.oil_2inletDensitylog;
 							//出口密度
@@ -414,47 +549,91 @@
 							document.getElementById("5").value = optionJson.oil_2standpipePressurelog;
 							//回压测量
 							document.getElementById("10").value = optionJson.oil_2wellMouthAdjustment;
+							huiyaCL = optionJson.oil_2wellMouthAdjustment;//回压测量
 							//工况2
-				            document.getElementById("gongkuang2").innerHTML = state_2;//optionJson.invoke_state_2.eq(2) ?'程序异常':optionJson.invoke_state_2.eq(0)?'正常工况':optionJson.invoke_state_2.eq(1)?'溢流':'警报状态';
+				            document.getElementById("gongkuang2").innerHTML = "模型加载";//optionJson.invoke_state_2.eq(2) ?'程序异常':optionJson.invoke_state_2.eq(0)?'正常工况':optionJson.invoke_state_2.eq(1)?'溢流':'警报状态';
 				        	//图1日期
 							dateTime1 = optionJson.oil_2Date;
+				        	//console.log(dateTime1);
 				        	//流量偏差,出-入
 				        	document.getElementById("liuliangpiancha").innerHTML = outletFlow - inletFlow;
+				        	//压力偏差,测量-设定
+				        	document.getElementById("yalipiancha").innerHTML = huiyaCL - huiyaSD;
+				       
+				        	  if(only==0){
+					        	   only++;
+						    		//console.log(dateTime1);//一旦此处发生阻塞，就能顺利读取
+				                             dateTime1Temp=new String(dateTime1);//获取第一秒钟的日期
+				                            
+				                            console.log(dateTime1Temp);
+				                            console.log(convertString(dateTime1Temp));
+				                            
+				                            dateTime1TempDate=new Date(convertString(dateTime1Temp));//将第一秒钟的日期转换为Date类型
+				                           // console.log(convertString(dateTime1Temp));
+				                            
+				                            data.push(randomZero(dateTime1TempDate,inletFlow));
+				                            
+				                    for (var i = 1; i < 1001; i++) {  //生成一千01个数
+				                            dateTime1TempDate.setSeconds(dateTime1TempDate.getSeconds()-1);//后退一秒
+				                            //var string2date=new Date();
+						    	            data.push(randomZero(dateTime1TempDate,inletFlow));  //randomData是前面定义的函数，目的是算出每一天的数字
+						    				//console.log(data[i]);
+				                        }  
+										data.shift();
+				                        data=data.reverse();//数组倒置*
+				                    //    console.log(data);
+				                        
+				                          dateTime1Temp2=new String(dateTime1);//获取第一秒钟的日期
+				                          dateTime1TempDate2=new Date(convertString(dateTime1Temp2));
+				                          data2.push(randomZero(dateTime1TempDate2,outletFlow));
+				                          for(var i=1;i<1001;i++){
+				                            dateTime1TempDate2.setSeconds(dateTime1TempDate2.getSeconds()-1);
+				                            data2.push(randomZero(dateTime1TempDate2,outletFlow));
+				                        }
+										data2.shift();
+				                        data2=data2.reverse();
+						    	     
+
+										//-------回压测量----//
+										dateTime1Temp3=new String(dateTime1);//获取日期
+										dateTime1TempDate3=new Date(convertString(dateTime1Temp3));//将字符串日期转换为Date型
+										myData2.push(randomZero(dateTime1TempDate3,huiyaCL));//将回压测量和日期包装放入数组
+										for(var i=1;i<1001;i++){
+											dateTime1TempDate3.setSeconds(dateTime1TempDate3.getSeconds()-1);
+											myData2.push(randomZero(dateTime1TempDate3,huiyaCL));
+										}
+										myData2.shift();
+										myData2=myData2.reverse();
+
+										dateTime1Temp4=new String(dateTime1);//获取设定值的日期
+										dateTime1TempDate4=new Date(convertString(dateTime1Temp4));
+									    myData.push(randomZero(dateTime1TempDate4,0));
+										for (var i = 1; i < 1001; i++) {  //生成一千01个数
+            								dateTime1TempDate4.setSeconds(dateTime1TempDate4.getSeconds()-1);
+											myData.push(randomZero(dateTime1TempDate4,0));  //randomData是前面定义的函数，目的是算出每一天的数字
+      								    }  
+										myData.shift();
+										myData=myData.reverse();
+										
+					        }
+						//	console.log(data);
+					       console.log(only);
+				        
 				        }
+
 				    });
+				    
 			    }
 			    
 			    
 			    //-----------------------------------------------------------------------------------图2---------------------------------------------
 		           var myChart = echarts.init(document.getElementById('main2'));
-		    	  
-			    
-                   function randomData(x,rukouliuliang) { //入口流量生成函数，参数是实时日期和入口流量，将其转化为二元组
-                            var riqi=x.substring(0,17);//获取实时日期
-		    	            return {  
-		    	                name: riqi,
-		    	                
-		    	                value: [  
-		    	                    riqi,
-		    	                     rukouliuliang //将下面生成的随机数value四舍五入
-		    	                ]  //返回一个数组
-		    	                 
-		    	            }  
-		    	    }
-			       
-			        
-		    	 /*   function randonData2(x){
-		    	      var riqi=x.substring(0,10);
-		    	        return{
-		    	            name:now2.toString(),
-		    	
-		    	            value:[
-		    	            [now2.getFullYear(), now2.getMonth() + 1, now2.getDate()].join('/'),  //join方法用于把数组中的所有元素放入一个字符串。元素是通过指定的分隔符进行分隔的。
-		    	                    Math.round(value2)  //将下面生成的随机数value四舍五入
-		    	            ]
-		    	        }
-		    	    }*/
-		
+		           var dateTime1Temp;
+		           var dateTime1TempDate;
+		           var dateTime1Temp2;
+		           var dateTime1TempDate2;
+		           var numberTime;//时间秒数
+ 		  
 		    	        var now = +new Date(2015, 9, 3);  //起始时间
 		    	        var now2 =+new Date(2015,9,3);
 		    	        
@@ -463,16 +642,7 @@
 		    	
 		    			var value = Math.random() * 1000; //生成0~1000随机数 ，作为起始值
 		    	        var value2=Math.random() * 1000;
-		    	       
-						for (var i = 0; i < 1000; i++) {  //生成一千个数
-		    	            data.push(0);  //randomData是前面定义的函数，目的是算出每一天的数字
-		    	        }  
-		    	          
-		    	
-		    	        for(var i=0;i<1000;i++){
-		    	            data2.push(0);
-		    	        }
-		    	       
+  
 		    			
 		    			option = {  //echarts的图表选项
 		    			            title: {  //标题，每个图表最多仅有一个标题控件
@@ -489,18 +659,46 @@
 		    			                axisPointer: {  //坐标轴指示器配置项。是指示坐标轴当前刻度的工具 鼠标悬浮到图上，可以出现标线和刻度文本。
 		    			                         type: 'cross'//我改成了十字交叉的样式，更酷炫
 		    			                       // animation: false  
-		    			                }  
+		    			                },
+										formatter:function(params){
+											params1 = params[0];//第一个series
+											params2 = params[1];//第二个series
+											paramsfinal = params[params.length-1];
+											let date = new Date(params1.name);
+											let res=date.getHours()+':'+date.getMinutes()+':'+date.getSeconds()+'</br>';
+											if(paramsfinal.value[1]==0){
+												res+="入口流量"+params1.value[1];
+												return res;
+											}else{
+												res+="入口流量"+params1.value[1]+"</br>"+"出口流量"+params2.value[1];
+												return res;
+											}
+										}
+
 		    			            },  
 		    	
 		    			            xAxis: {  //直角坐标系中横轴数组，数组中每一项代表一条横轴坐标轴，标准（1.0）中规定最多同时存在2条横轴
 		    			                type: 'time', // 时间轴，适用于连续的时序数据，与数值轴相比时间轴带有时间的格式化 
 		    			                splitLine: {  
 		    			                    show: false //是否显示分割线
-		    			                }  
+		    			                },
+										maxIntertal:5*60*1000,//以五分钟为间隔
+										/*min:function(value){
+											return value.max-20*60*1000;//量程为20min
+										},*/
+										axisLabel:{
+											interval:0,
+											rotate:"45",
+											formatter:function(value,index){
+												var date=new Date(value);
+												var texts=[date.getHours(),date.getMinutes(),date.getSeconds()];
+												return texts.join(':');
+											}
+										}
 		    			            },  
 		    			            yAxis: {  //纵轴
 		    			                type: 'value',  //数值轴，适用于连续数据。
-		    			                boundaryGap: [0, '100%'], // boundaryGap是一个两个值的数组，分别表示数据最小值和最大值的延伸范围，可以直接设置数值或者相对的百分比，在设置 min 和 max 后无效。
+		    			                boundaryGap: [0, '30%'], // boundaryGap是一个两个值的数组，分别表示数据最小值和最大值的延伸范围，可以直接设置数值或者相对的百分比，在设置 min 和 max 后无效。
 		    			                splitLine: {  
 		    			                    show: false  
 		    			                }  
@@ -583,25 +781,51 @@
 		    	//		    option.legend =abc;
 		    			 //myChart.setOption(option);//如果测试阶段不想让他动，，可以吧这个拿出来，再把下面的注释掉
 		    	
-		    	
-		    	
+                var tempdate;var tempdatedate;var sum;var sameDate;
+		   
 		    	//每隔一定时间执行里面的匿名函数，时间间隔是第二个参数，单位是毫秒
 		    	      setInterval(function () {  
-		    	          
+		    	          if(data.length==1000){
+		    		tempdate=new String(dateTime1);//获取日期
+				    	// console.log(dateTime1);
+		                tempdatedate=new Date(convertString(tempdate));//转换为Date类型
+		              //  if(data[data.length-1].value[0].getSecends)
+		             sum=0; 
+					 sameDate=tempdatedate.clone();
+					 console.log((data[data.length-1].value)[0]);
+						while((tempdatedate.getSeconds()-(data[data.length-1].value)[0].getSeconds())>1){
+		                        	
+		                        	console.log(tempdatedate);
+		                        	//console.log(data[data.length-1]["value"][0]);
+		                
+		                  sameDate.setSeconds(sameDate.getSeconds()+1);
+		                    data.push(randomZero(sameDate,inletFlow));  //在生成一个数据
+		                    data2.push(randomZero(sameDate,outletFlow));
+		                    sum++;
+		                }
+					 
+		                       
+		                for (var i=0;i<sum+1;i++){
+		                    data.shift();
+		                    data2.shift();
+		                }
+		                    sum=0;
+		               
+		                                data.push(randomZero(tempdatedate,inletFlow));  //在生成一个数据
+				    	                data2.push(randomZero(tempdatedate,outletFlow));
+				    	         //   }  
+				    	           myChart.setOption(option);//更新一次图表
+				    	//因此mychart.setOption这个函数是很重要的函数，负责更新图表，咱们也应该使用上面的for循环，注意调节更新速度
+		    	}
 		    	           // for (var i = 0; i < 5; i++) {  //每次生成五个数据
-		    	                data.shift();  //把第一个数据扔了
-		    	                data.push(randomData(dateTime1,inletFlow));  //在生成一个数据
-		    	                data2.shift();
-		    	                data2.push(randomData(dateTime1,outletFlow));
-		    	         //   }  
-		    	           myChart.setOption(option);//更新一次图表
-		    	//因此mychart.setOption这个函数是很重要的函数，负责更新图表，咱们也应该使用上面的for循环，注意调节更新速度
-		    	        }, 100);  
+		    	             //   data.shift();  //把第一个数据扔了
+		    	
+		    	        }, 1000);  
 			</script>
    
      <script type="text/javascript"> 
       var myChartmyChart = echarts.init(document.getElementById('main'));
-      var myNow = +new Date(1997, 9, 3);  //起始时间
+  /*    var myNow = +new Date(1997, 9, 3);  //起始时间
       var myNow2 =+new Date(1997,9,3);//又一个起始时间
         var oneDayDay = 24 * 3600 * 1000;  //一天一共有这些毫秒数
         function newRandom(){
@@ -636,13 +860,11 @@
     //    var now = +new Date(1997, 9, 3);  //起始时间
       //  var oneDay = 24 * 3600 * 1000;  //一天一共有这些毫秒数
        // var value = Math.random() * 1000; //生成0~1000随机数 ，作为起始值
-//var value2=Math.random() * 1000;
-        for (var i = 0; i < 1000; i++) {  //生成一千个数
-            myData.push(newRandom());  //randomData是前面定义的函数，目的是算出每一天的数字
-        }  
-        for (var i=0;i<1000;i++){
-            myData2.push(newRandom2());
-        } 
+//var value2=Math.random() * 1000;*/
+       
+  //      for (var i=0;i<1000;i++){
+    //        myData2.push(newRandom2());
+      //  } 
        
 
                option1 = {  //echarts的图表选项
@@ -660,7 +882,17 @@
                 axisPointer: {  //坐标轴指示器配置项。是指示坐标轴当前刻度的工具 鼠标悬浮到图上，可以出现标线和刻度文本。
                          type: 'cross'//我改成了十字交叉的样式，更酷炫
                        // animation: false  
-                }  
+                },
+				formatter:function(params){
+					paramsA = params[0];//第一个series
+					paramsB = params[1];//第二个series
+					paramsfinalA = params[params.length-1];
+					let date = new Date(paramsA.name);
+					let res=date.getHours()+':'+date.getMinutes()+':'+date.getSeconds()+'</br>';
+					res+="设定值"+paramsA.value[1]+"</br>"+"测量值"+paramsfinalA.value[1];
+					return res;
+						
+				}
             },  
            /* legend: {
                 data: ['系列一', '系列二'],
@@ -669,11 +901,21 @@
                 type: 'time', // 时间轴，适用于连续的时序数据，与数值轴相比时间轴带有时间的格式化 
                 splitLine: {  
                     show: false //是否显示分割线
-                }  
+                },
+				maxIntertal:5*60*1000,
+				axisLabel:{
+					interval:0,
+					rotate:"45",
+					formatter:function(value,index){
+						var date=new Date(value);
+						var texts=[date.getHours(),date.getMinutes(),date.getSeconds()];
+						return texts.join(':');
+					}
+				}
             },  
             yAxis: {  //纵轴
                 type: 'value',  //数值轴，适用于连续数据。
-                boundaryGap: [0, '100%'], // boundaryGap是一个两个值的数组，分别表示数据最小值和最大值的延伸范围，可以直接设置数值或者相对的百分比，在设置 min 和 max 后无效。
+                boundaryGap: [0, '30%'], // boundaryGap是一个两个值的数组，分别表示数据最小值和最大值的延伸范围，可以直接设置数值或者相对的百分比，在设置 min 和 max 后无效。
                 splitLine: {  
                     show: false  
                 }  
@@ -693,11 +935,7 @@
             left: '400px',
             feature: {
                
-               /* dataZoom: {
-                    yAxisIndex: 'none'
-                },*/
-              // restore: {},//还原功能
-                
+
                 myselfButtons:{//自定义按钮 danielinbiti,这里增加，selfbuttons可以随便取名字  
                    show:true,//是否显示  
                    title:'自定义', //鼠标移动上去显示的文字  
@@ -739,15 +977,14 @@
 
             }
         },
-            series: [{  //驱动图表生成的数据内容  //系列列表。每个系列通过 type 决定自己的图表类型 //应该一定要有
+            series: [{  
               //  name: '模拟数据',  //暂时不知道啥意思。。。。注释掉没发现异常
                 type: 'line',  //代表折线图
                // name='系列一',
                 showSymbol: false,  //不显示标志。。。
                 hoverAnimation: false,  //是否开启 hover 在拐点标志上的提示动画效果。
-                data: myData  //右边这个data指的是前面的data数组。通常来说，数据用一个二维数组表示。咱们的数据要放到这里面
-//当某维度对应于时间轴（type 为 'time'）的时候，值应该表示时间
-            },{
+                data: myData//以前面的数据测试
+            },{//回压测量
             type:'line',
           //  name:'系列二',
             showSymbol:false,
@@ -765,7 +1002,7 @@
  //myChart.setOption(option);//如果测试阶段不想让他动，，可以吧这个拿出来，再把下面的注释掉
  //myChart.setOption(option);//如果测试阶段不想让他动，，可以吧这个拿出来，再把下面的注释掉
        //每隔一定时间执行里面的匿名函数，时间间隔是第二个参数，单位是毫秒
-      setInterval(function () {  
+    /*  setInterval(function () {  
           
             for (var i = 0; i < 5; i++) {  //每次生成五个数据
                 myData.shift();  //把第一个数据扔了
@@ -775,7 +1012,39 @@
             }  
            myChartmyChart.setOption(option1);//更新一次图表
 //因此mychart.setOption这个函数是很重要的函数，负责更新图表，咱们也应该使用上面的for循环，注意调节更新速度
-        }, 100);  
+        }, 100);  */
+
+var tempdate3;var tempdatedate3; var sum3;var sameDate3;
+		setInterval(function(){
+			console.log("DuanDian-1");
+			console.log(myData2.length);
+			if(myData2.length==1000){
+				tempdate3=new String(dateTime1);//获取日期
+				tempdatedate3=new Date(convertString(tempdate3));//将字符串日期转换为Date类型
+				sum3=0;//计数，便于未来shift
+				sameDate3=tempdatedate3.clone();//拷贝相同的一份日期
+				while((tempdatedate3.getSeconds()-(myData2[myData2.length-1].value)[0].getSeconds())>1){
+					sameDate3.setSeconds(sameDate3.getSeconds()+1);
+					myData2.push(randomZero(sameDate3,huiyaCL));
+					myData.push(randomZero(sameDate3,huiyaSD));
+					sum3++;
+				}
+				for(var i=0;i<sum3+1;i++){
+					myData2.shift();
+				}
+				
+				myData2.push(randomZero(tempdatedate3,huiyaCL));
+
+				for(var i=0;i<sum3+1;i++){
+					myData.shift();
+				
+				}
+				myData.push(randomZero(tempdatedate3,huiyaSD));
+				sum3=0;
+				
+				myChartmyChart.setOption(option1);
+			}
+		},1000);
      </script>
      
 	 <script>
@@ -822,6 +1091,9 @@
 		    function sub(id,number){
 		      var i = Number(document.getElementById(id).value);
 		      i=i-number;
+			  if(i<0){
+				  i=i+number;
+			  }
 		      document.getElementById(id).value = String(i.toFixed(2));
 		    }
   
@@ -841,7 +1113,52 @@
 			}
 	     </script>
      
-     
+	 <script type="text/javascript">
+	 let toggle=0;//按钮实现累加功能
+	 var timer=null;
+
+	 var togglefunction=function(){
+				
+				$("#RuKouLiuLiangLeiJi").text(inletLeiJiaHe);
+				$("#ChuKouLiuLiangLeiJi").text(outletLeiJiaHe);
+				$("#ChaZhi").text(ChaZhi);
+		
+			}
+	 			
+				 
+	 
+	 $("#sum").click(function(){
+		 if(toggle==0){
+			inletLeiJiaHe=0;
+outletLeiJiaHe=0;
+ChaZhi=0;
+toggle+=1;
+if(timer==null){
+timer=setInterval(togglefunction,1000);
+console.log(timer);
+console.log(toggle);
+console.log("setInterval");
+}
+
+
+		 }
+		else if(toggle==1){
+			toggle-=1;
+			
+			if(timer!=null){
+				console.log("clearInterval");
+				window.clearInterval(timer);
+				timer=null;
+			}
+			
+		 }
+	 });
+	
+					
+				
+			
+	
+	</script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->

@@ -6,12 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class InvokePYModel {
-    /*
-    * ***************注意配置路径**********************
-     */
-    public static String PythonPath = "C:\\D\\PythonModel\\invokeModel.py";
-    public static String ServerPath = "C:\\D\\PythonModel\\pythonServer.py";
-	
+    /*****************注意配置路径***********************/
 	String root_path = new File(this.getClass().getClassLoader().getResource("/").getPath()).getParent();
 	String py_path = root_path + File.separator + "py" + File.separator + "invokeModel.py";
 	String se_path = root_path + File.separator + "py" + File.separator + "pythonServer.py";
@@ -67,9 +62,20 @@ public class InvokePYModel {
 
     public static void termModel(){
         try{
-            procPython.destroy();
+	if(procPython != null)
+	            procPython.destroy();
         }catch (Exception e){
             e.printStackTrace();
         }
     }
+	public InvokePYModel(){
+		if( procPython == null){
+            			iniModel();
+        		}
+	}
+	protected void finalize( ){
+		if( procPython != null){
+            			termModel();
+        		}
+	}
 }

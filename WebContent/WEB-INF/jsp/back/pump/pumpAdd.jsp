@@ -29,9 +29,9 @@
 			      <thead>
 			      <tr>
 			        <th class="text-center"></th>
-			        <th class="text-center">泵缸套数</th>
-			        <th class="text-center">冲程(mm)</th>
-			        <th class="text-center">缸套直径(mm)</th>
+			        <th >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;泵缸套数</th>
+			        <th >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;冲程(mm)</th>
+			        <th >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;缸套直径(mm)</th>
 			  <!--  <th></th>
 			        <th></th> -->
 			      </tr>
@@ -40,12 +40,15 @@
 			        <td  name="editor">
 			          1号泵
 			        </td>
+			        <!-- 泵缸套数 -->
 			        <td c  name="editor">
 			          <input   type="number" onkeyup="this.value= this.value.match(/\d+(\.\d{0,2})?/) ? this.value.match(/\d+(\.\d{0,2})?/)[0] : ''">
 			        </td>
+			        <!-- 冲程 -->
 			        <td   name="editor">
 			          <input  type="number" onkeyup="this.value= this.value.match(/\d+(\.\d{0,2})?/) ? this.value.match(/\d+(\.\d{0,2})?/)[0] : ''">
 			        </td>
+			        <!-- 缸套直径 -->
 			        <td   name="editor">
 			          <input  type="number" onkeyup="this.value= this.value.match(/\d+(\.\d{0,2})?/) ? this.value.match(/\d+(\.\d{0,2})?/)[0] : ''">
 			        </td>
